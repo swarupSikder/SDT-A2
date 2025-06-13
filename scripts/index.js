@@ -1,8 +1,12 @@
+let mainCollection = [];
+
 // fetch
 const loadData = async () => {
     const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
         .then(res => res.json())
         .then(data => data.drinks);
+
+    mainCollection = collection;
 
     // parent layout
     const drinksLayout = document.getElementById('drinks-layout');
@@ -27,7 +31,7 @@ const loadData = async () => {
 
                     <div class="d-flex justify-content-between">
                         <button onclick="handleAddToCart('${drink.idDrink}', this)" class="btn btn-success">Add to Cart</button>
-                        <button class="btn btn-outline-success">Details</button>
+                        <button onclick="showDrinkDetails('${drink.idDrink}')" class="btn btn-outline-success">Details</button>
                     </div>
                 </div>
             </div>
@@ -45,19 +49,23 @@ loadData();
 
 
 
-let count = 0;
 
+
+
+
+
+
+
+
+
+let count = 0;
 const handleAddToCart = async (id, button) => {
     if (count > 5) {
         alert('Max limit of cart reached!!!');
         return;
     }
 
-    const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
-        .then(res => res.json())
-        .then(data => data.drinks);
-
-    const singleDrinkData = collection.find(drink => drink.idDrink === id);
+    const singleDrinkData = mainCollection.find(drink => drink.idDrink === id);
 
     const cartParentLayout = document.getElementById('cart-parent-layout');
 
@@ -81,3 +89,31 @@ const handleAddToCart = async (id, button) => {
     button.innerText = "Added";
     button.disabled = true;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// show modal with drink details
+const showDrinkDetails = (id) => {
+    const drink = mainCollection.find(drink => drink.idDrink === id);
+    if (!drink) return;
+
+    document.getElementById('drinkModalLabel').innerText = drink.strDrink;
+    document.getElementById('modal-img').src = drink.strDrinkThumb;
+    document.getElementById('modal-category').innerText = `Category: ${drink.strCategory}`;
+    document.getElementById('modal-instructions').innerText = drink.strInstructions;
+
+    const modal = new bootstrap.Modal(document.getElementById('drinkModal'));
+    modal.show();
+}
