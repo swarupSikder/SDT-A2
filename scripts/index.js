@@ -48,6 +48,12 @@ loadData();
 let count = 0;
 
 const handleAddToCart = async (id) => {
+    if (count > 4) {
+        alert('Max limit of cart reached!!!');
+        return;
+    }
+
+
     const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
         .then(res => res.json())
         .then(data => data.drinks);
