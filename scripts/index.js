@@ -111,8 +111,11 @@ const showDrinkDetails = (id) => {
 
     document.getElementById('drinkModalLabel').innerText = drink.strDrink;
     document.getElementById('modal-img').src = drink.strDrinkThumb;
-    document.getElementById('modal-category').innerText = `Category: ${drink.strCategory}`;
-    document.getElementById('modal-instructions').innerText = drink.strInstructions;
+    document.getElementById('modal-category').innerHTML = `<span class="fs-5 text-success">Category: </span> ${drink.strCategory}`;
+    document.getElementById('modal-instructions').innerHTML = `<span class="fs-5 text-success">Instruction: </span> ${drink.strInstructions}`;
+    document.getElementById('ing-1').innerText = drink.strIngredient1;
+    document.getElementById('ing-2').innerText = drink.strIngredient2;
+    document.getElementById('modal-date-modified').innerHTML = `<span class="fs-5 text-success">Update On: </span> ${drink.dateModified}`;
 
     const modal = new bootstrap.Modal(document.getElementById('drinkModal'));
     modal.show();
