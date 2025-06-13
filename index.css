@@ -1,0 +1,10 @@
+#thumbnail {
+    height: 200px;
+    object-fit: cover;
+}
+
+#add-to-cart-btn:hover {
+    background-color: white;
+    color: #198754;
+    border: 1px solid #198754;
+}
