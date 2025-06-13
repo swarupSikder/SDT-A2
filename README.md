@@ -4,9 +4,9 @@
 
 ---
 
-## 🌐 Live Demo
+## 🌐 Live Link
 
-> [Link to Live Demo (if hosted)](https://your-live-site-link.com)
+> https://swarupsikder.github.io/SDT-A2/
 
 ---
 
