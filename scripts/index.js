@@ -2,7 +2,7 @@ let mainCollection = [];
 
 // fetch
 const loadData = async () => {
-    const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
+    const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a')
         .then(res => res.json())
         .then(data => data.drinks);
 
