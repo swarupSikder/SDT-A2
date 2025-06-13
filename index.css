@@ -20,3 +20,9 @@
     height: 500px;
     object-fit: cover;
 }
+
+.no-drink {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    color: #ffad73;
+}

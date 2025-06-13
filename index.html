@@ -20,8 +20,8 @@
             </a>
 
 
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <form onsubmit="handleSearch(event, event.target.search.value)" class="d-flex" role="search">
+                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" />
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
 
@@ -46,7 +46,8 @@
                 <div class="container text-center">
 
                     <!--parent layout-->
-                    <div id="drinks-layout" class="row g-3"></div>
+                    <div id="drinks-layout" class="row g-3">
+                    </div>
 
                 </div>
             </div>

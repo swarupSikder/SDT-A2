@@ -120,3 +120,67 @@ const showDrinkDetails = (id) => {
     const modal = new bootstrap.Modal(document.getElementById('drinkModal'));
     modal.show();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// search
+const handleSearch = (event, text) => {
+    event.preventDefault();
+    const searchedItems = mainCollection.filter(drink => drink.strDrink.trim().toLowerCase().includes(text.trim().toLowerCase()));
+
+    // parent layout
+    const drinksLayout = document.getElementById('drinks-layout');
+    drinksLayout.innerHTML = ``;
+
+
+    if(searchedItems.length === 0){
+        drinksLayout.innerHTML = `
+            <div class="no-drink">
+                <img src="./assets/empty.png" class="w-25" alt="">
+                <h2>No Drinks Found</h2>
+            </div>
+        `;
+    }
+
+    
+
+    searchedItems.forEach(drink => {
+
+        //child card
+        const singleDrinkCard = document.createElement('div');
+        singleDrinkCard.className = 'col-md-4';
+
+        singleDrinkCard.innerHTML = `
+            <div class="card h-100">
+                <img id="thumbnail" src="${drink.strDrinkThumb}" class="card-img-top" alt="${drink.strDrink}">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="mb-4">
+                        <h5 class="card-title text-start">${drink.strDrink}</h5>
+                        <p class="text-start text-black-50">${drink.strCategory}</p>
+                        <p class="card-text text-start">${drink.strInstructions.slice(0, 15)}...</p>
+                    </div>
+
+        
+
+                    <div class="d-flex justify-content-between">
+                        <button onclick="handleAddToCart('${drink.idDrink}', this)" class="btn btn-success">Add to Cart</button>
+                        <button onclick="showDrinkDetails('${drink.idDrink}')" class="btn btn-outline-success">Details</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        drinksLayout.appendChild(singleDrinkCard);
+    });
+}
