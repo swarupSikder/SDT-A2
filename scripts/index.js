@@ -46,7 +46,6 @@ loadData();
 
 
 let count = 0;
-const cartLen = document.getElementById('cart-len');
 
 const handleAddToCart = async (id) => {
     const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
@@ -67,4 +66,10 @@ const handleAddToCart = async (id) => {
         `;
 
     cartParentLayout.appendChild(singleRow);
+
+
+    //increment
+    const cartLen = document.getElementById('cart-len');
+    count = count + 1;
+    cartLen.innerText = count;
 }
