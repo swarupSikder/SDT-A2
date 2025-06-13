@@ -26,7 +26,7 @@ const loadData = async () => {
         
 
                     <div class="d-flex justify-content-between">
-                        <button id="add-to-cart-btn" class="btn btn-success">Add to Cart</button>
+                        <button onClick="handleAddToCart('${drink.idDrink}')" id="add-to-cart-btn" class="btn btn-success">Add to Cart</button>
                         <button class="btn btn-outline-success">Details</button>
                     </div>
                 </div>
@@ -38,3 +38,33 @@ const loadData = async () => {
 }
 
 loadData();
+
+
+
+
+
+
+
+let count = 0;
+const cartLen = document.getElementById('cart-len');
+
+const handleAddToCart = async (id) => {
+    const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
+        .then(res => res.json())
+        .then(data => data.drinks);
+
+    const singleDrinkData = collection.find(drink => drink.idDrink === id);
+
+    // parent layout
+    const cartParentLayout = document.getElementById('cart-parent-layout');
+
+    //child card
+    const singleRow = document.createElement('tr');
+    singleRow.innerHTML = `
+            <td>1</td>
+            <td><img class="cart-image" src="${singleDrinkData.strDrinkThumb}" alt="Drink" /></td>
+            <td>${singleDrinkData.strDrink}</td>
+        `;
+
+    cartParentLayout.appendChild(singleRow);
+}

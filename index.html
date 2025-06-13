@@ -56,14 +56,37 @@
 
 
             <!--Cart-->
-            <div class="col-4 bg-warning">
-                Column
+            <div class="col-4">
+                <h3 class="text-success rounded p-2"
+                    style="background-color: rgb(230, 255, 235); border: 2px solid rgb(196, 248, 217);">d<span
+                        class="text-secondary">Zone Cart : <span id="cart-len">0</span></span></h3>
+
+                <!--cart-items-layout-->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped align-middle text-center">
+                        <thead class="table-success">
+                            <tr>
+                                <th scope="col">SL</th>
+                                <th scope="col">Img</th>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+
+
+
+                        <tbody id="cart-parent-layout">
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </main>
 
 
-
+    <!-- <tr>
+        
+    </tr> -->
 
 
     <script src="./scripts/index.js"></script>
