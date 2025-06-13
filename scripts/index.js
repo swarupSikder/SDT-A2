@@ -26,7 +26,7 @@ const loadData = async () => {
         
 
                     <div class="d-flex justify-content-between">
-                        <button onClick="handleAddToCart('${drink.idDrink}')" id="add-to-cart-btn" class="btn btn-success">Add to Cart</button>
+                        <button onclick="handleAddToCart('${drink.idDrink}', this)" class="btn btn-success">Add to Cart</button>
                         <button class="btn btn-outline-success">Details</button>
                     </div>
                 </div>
@@ -47,12 +47,11 @@ loadData();
 
 let count = 0;
 
-const handleAddToCart = async (id) => {
-    if (count > 4) {
+const handleAddToCart = async (id, button) => {
+    if (count > 5) {
         alert('Max limit of cart reached!!!');
         return;
     }
-
 
     const collection = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
         .then(res => res.json())
@@ -60,22 +59,25 @@ const handleAddToCart = async (id) => {
 
     const singleDrinkData = collection.find(drink => drink.idDrink === id);
 
-    // parent layout
     const cartParentLayout = document.getElementById('cart-parent-layout');
 
-    //child card
     const singleRow = document.createElement('tr');
     singleRow.innerHTML = `
-            <td>1</td>
-            <td><img class="cart-image" src="${singleDrinkData.strDrinkThumb}" alt="Drink" /></td>
-            <td>${singleDrinkData.strDrink}</td>
-        `;
+        <td>${count + 1}</td>
+        <td><img class="cart-image" src="${singleDrinkData.strDrinkThumb}" alt="Drink" /></td>
+        <td>${singleDrinkData.strDrink}</td>
+    `;
 
     cartParentLayout.appendChild(singleRow);
 
+    // Increment count
+    count++;
+    document.getElementById('cart-len').innerText = count;
 
-    //increment
-    const cartLen = document.getElementById('cart-len');
-    count = count + 1;
-    cartLen.innerText = count;
-}
+    // Disable the clicked button
+    button.classList.add('disabled');
+    button.classList.remove('btn-success');
+    button.classList.add('btn-outline-warning');
+    button.innerText = "Added";
+    button.disabled = true;
+};
