@@ -60,7 +60,7 @@ loadData();
 
 let count = 0;
 const handleAddToCart = async (id, button) => {
-    if (count > 5) {
+    if (count > 6) {
         alert('Max limit of cart reached!!!');
         return;
     }
